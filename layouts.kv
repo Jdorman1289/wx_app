@@ -1,0 +1,174 @@
+################################### All Popup Pages #####################################
+
+<about_page@Popup>
+    auto_dismiss: True
+    title: "About Us / License"
+    size_hint: 0.6, 0.6
+    pos_hint: {"x": 0.2, "top": 0.9}
+
+
+<help_page@Popup>
+    auto_dismiss: True
+    title: "Help"
+    size_hint: 0.6, 0.6
+    pos_hint: {"x": 0.2, "top": 0.9}
+
+
+
+################################### All Windows #####################################
+
+WindowManager:
+    MainWindow:
+    WindowTwo:
+
+#################################### Main Window Layout #############################
+<MainWindow>
+    name: "main_window"
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        canvas:
+            Color:
+                rgb: (.32, .32, .32)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout
+
+            Button:
+                text: "See Radar"
+                pos_hint: {"top": 1, "left": 1}
+                size_hint_y: None
+				size_hint_x: None
+                text_size: None, None
+                height: self.texture_size[1]
+				width: 200
+                on_release: 
+                    app.root.current = "window_two" 
+                    root.manager.transition.direction = "up"
+        	
+        	Spinner:
+        		id: drop_menu
+				pos_hint: {"top": 1, "right": 1}
+        		text: "..."
+        		values: ["About", "Help"]
+				size_hint_y: None
+				size_hint_x: None
+                text_size: None, None
+                height: self.texture_size[1]
+				width: 80
+        		on_text: root.popup_menu(drop_menu.text)
+
+            Image:
+                source: "weather.png"
+                allow_stretch: True
+                keep_ratio: True
+                pos_hint: {"right": 1, "top": 1}
+            
+            TextInput:
+                id: location
+                multiline: False
+                size_hint_x: None
+                width: 100
+                size_hint_y: None
+                height: 45
+                text: "City"
+                pos_hint: {"top": .8, "left": 1}
+
+            TextInput:
+            	id: state
+            	multiline: False
+                size_hint_x: None
+                width: 100
+                size_hint_y: None
+                height: 45
+                text: "State"
+                pos_hint: {"top": .6, "left": 1}
+
+            Button:
+            	text: "Get Weather"
+            	bold: True
+            	background_color: "#00FFCE"
+                size_hint_x: None
+                width: 100
+                size_hint_y: None
+                height: 45
+            	on_release: root.get_wx()
+                pos_hint: {"top": .4, "left": 1}
+
+            Button:
+            	text: "Clear"
+            	bold: True
+            	background_color: "#00FFCE"
+                size_hint_x: None
+                width: 100
+                size_hint_y: None
+                height: 45
+            	on_release: root.clear()
+                pos_hint: {"top": .2, "left": 1}
+
+        Accordion:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: 400
+
+            AccordionItem:
+                title: "Current Conditions and Forecast" 
+
+                GridLayout:
+                    cols: 2
+
+                    Splitter:
+                        sizable_from: 'right'
+                        
+                        ScrollView:
+                            Label:
+                                id: observation
+                                size_hint_y: None
+                                text_size: self.width, None
+                                height: self.texture_size[1]
+                                color: "#00FFCE"
+
+                    ScrollView:
+                        Label:
+                            id: forecast
+                            size_hint_y: None
+                            text_size: self.width, None
+                            height: self.texture_size[1]
+                            color: "#00FFCE"   
+
+
+################################ Window Two Layout #################################
+<WindowTwo>
+    name: "window_two"
+
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        canvas:
+            Color:
+                rgb: (.32, .32, .32)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+        FloatLayout
+
+            Button:
+                text: "Go Back"
+                pos_hint: {"top": 1, "left": 1}
+                size_hint_y: None
+				size_hint_x: None
+                text_size: None, None
+                height: self.texture_size[1]
+				width: 200
+                on_release: 
+                    app.root.current = "main_window" 
+                    root.manager.transition.direction = "down"
+
