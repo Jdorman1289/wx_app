@@ -45,7 +45,7 @@ WindowManager:
 				size_hint_x: None
                 text_size: None, None
                 height: self.texture_size[1]
-				width: 200
+				width: 100
                 on_release: 
                     app.root.current = "window_two" 
                     root.manager.transition.direction = "up"
@@ -167,8 +167,27 @@ WindowManager:
 				size_hint_x: None
                 text_size: None, None
                 height: self.texture_size[1]
-				width: 200
+				width: 100
                 on_release: 
                     app.root.current = "main_window" 
                     root.manager.transition.direction = "down"
 
+            
+            Button:
+                text: "Get/Refresh"
+                pos_hint: {"top": 1, "right": 1}
+                background_color: "#00FFCE"
+                size_hint_y: None
+				size_hint_x: None
+                text_size: None, None
+                height: self.texture_size[1]
+				width: 100
+                on_release: root.get_radar()
+
+            
+            Image:
+                id: radar_id
+                pos_hint: {"top": .95, "left": .5}
+                source: " "
+                allow_stretch: True
+                keep_ratio: True

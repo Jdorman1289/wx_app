@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 import pandas as pd
-
+import urllib.request as img_get
 
 
 # The different screens
@@ -54,9 +54,16 @@ class MainWindow(Screen):
         elif value == "About":
             Factory.about_page().open()
             self.ids.drop_menu.text = "..."
+    
+    
 
 class WindowTwo(Screen):
-    pass
+    
+    def get_radar(self):
+
+        img_get.urlretrieve("https://radar.weather.gov/ridge/standard/CONUS_0.gif", "radar.jpg")
+
+        self.ids.radar_id.source = "radar.jpg"
 
 class WindowManager(ScreenManager):
     pass
