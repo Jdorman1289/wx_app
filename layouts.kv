@@ -6,6 +6,15 @@
     size_hint: 0.6, 0.6
     pos_hint: {"x": 0.2, "top": 0.9}
 
+    ScrollView:
+        Label:
+            text: "A simple weather app.\n\n\nThanks to simplemaps.com/data/us-cities for providing the database of locations.\n\nThanks to icons8.com for providing the icon image used on the app.\n\nThanks to weather.gov for creating weather forecasts\n\n\nLicensed under the: GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 "
+
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: "#00FFCE"   
+
 
 <help_page@Popup>
     auto_dismiss: True
