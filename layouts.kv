@@ -1,8 +1,8 @@
 ################################### All Popup Pages #####################################
 
-<about_page@Popup>
+<license_page@Popup>
     auto_dismiss: True
-    title: "About Us / License"
+    title: "Acknowledgements / License"
     size_hint: 0.6, 0.6
     pos_hint: {"x": 0.2, "top": 0.9}
 
@@ -16,11 +16,21 @@
             color: "#00FFCE"   
 
 
-<help_page@Popup>
+<about_page@Popup>
     auto_dismiss: True
-    title: "Help"
+    title: "About"
     size_hint: 0.6, 0.6
     pos_hint: {"x": 0.2, "top": 0.9}
+
+    ScrollView:
+        Label:
+            text: "Created by Jesse Dorman.\n\n\nFor updates you can go here: \n\nTo donate to the developer you can go here: \n\n\nEnjoy!"
+
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+            color: "#00FFCE"   
+
 
 
 
@@ -63,7 +73,7 @@ WindowManager:
         		id: drop_menu
 				pos_hint: {"top": 1, "right": 1}
         		text: "..."
-        		values: ["About", "Help"]
+        		values: ["About", "License"]
 				size_hint_y: None
 				size_hint_x: None
                 text_size: None, None

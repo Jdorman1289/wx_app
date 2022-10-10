@@ -48,8 +48,8 @@ class MainWindow(Screen):
         self.ids.forecast.text = " "
     
     def popup_menu(self, value):
-        if value == "Help":
-            Factory.help_page().open()
+        if value == "License":
+            Factory.license_page().open()
             self.ids.drop_menu.text = "..."
         elif value == "About":
             Factory.about_page().open()
