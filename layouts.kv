@@ -48,51 +48,40 @@ MainWindow:
                 text: "Current"
                 icon: "home-thermometer-outline"
 
-
-
-
-                GridLayout:
-                    cols: 1
-                    size: root.width, root.height
-
+                MDGridLayout:
+                    cols: 2
+                    
                     canvas.before:
                         Color:
-                            rgb: (.537, .812, .941)
+                            rgb: (.0588, .3216, .7294)
                         Rectangle:
                             pos: self.pos
                             size: self.size
 
-                    FloatLayout
-
-                        
-
-
-                        
+                    MDBoxLayout:
+                        orientation: "vertical"
+                            
                         MDTextField
                             id: location
                             hint_text: "City name: 'Dallas'"
-                            pos_hint: {"top": .8, "left": 1}
-                            height: 45
-                            width: 100
+
 
                         MDTextField
                             id: state
                             hint_text: "State name: 'Texas'"
-                            pos_hint: {"top": .8, "left": 1}
-                            height: 45
-                            width: 100
 
-                        MDRaisedButton:
+
+                        MDFlatButton:
                             text: "Get Weather"
                             on_release: root.get_wx()
-                            pos_hint: {"top": .4, "left": 1}
 
-                        MDRaisedButton:
+
+                        MDFlatButton:
                             text: "Clear"
                             on_release: root.clear()
-                            pos_hint: {"top": .2, "left": 1}
 
-
+                    MDBoxLayout:
+                        orientation: "vertical"
                         
                         ScrollView:
                             MDLabel:
@@ -100,16 +89,6 @@ MainWindow:
                                 size_hint_y: None
                                 text_size: self.width, None
                                 height: self.texture_size[1]
-                                md_color: app.theme_cls.primary_color
-
-
-                                ScrollView:
-                                    Label:
-                                        id: forecast
-                                        size_hint_y: None
-                                        text_size: self.width, None
-                                        height: self.texture_size[1]
-                                        color: "#00FFCE"   
 
 
             MDBottomNavigationItem:
@@ -124,19 +103,18 @@ MainWindow:
 
                     canvas.before:
                         Color:
-                            rgb: (.537, .812, .941)
+                            rgb: (.0588, .3216, .7294)
                         Rectangle:
                             pos: self.pos
                             size: self.size
                     
                     
                     ScrollView:
-                        Label:
+                        MDLabel:
                             id: forecast
                             size_hint_y: None
                             text_size: self.width, None
                             height: self.texture_size[1]
-                            md_color: app.theme_cls.primary_color
 
 
             MDBottomNavigationItem:
@@ -145,31 +123,28 @@ MainWindow:
                 icon: "radar"
 
 
-                GridLayout:
-                    cols: 1
+                MDBoxLayout:
+                    orientation: "vertical"
                     size: root.width, root.height
 
                     canvas.before:
                         Color:
-                            rgb: (.537, .812, .941)
+                            rgb: (.0588, .3216, .7294)
                         Rectangle:
                             pos: self.pos
                             size: self.size
 
+ 
+                    MDFlatButton:
+                        text: "Get/Refresh"
+                        on_release: root.get_radar()
 
-                    FloatLayout
-                        
-                        MDRaisedButton:
-                            text: "Get/Refresh"
-                            pos_hint: {"top": 1, "right": 1}
-                            on_release: root.get_radar()
-
-                        
-                        Image:
-                            id: radar_id
-                            pos_hint: {"top": .95, "left": .5}
-                            allow_stretch: True
-                            keep_ratio: True
-                            size_hint_y: None
-                            height: "0dp"
-                            source: ""
+                    
+                    Image:
+                        id: radar_id
+                        allow_stretch: True
+                        keep_ratio: True
+                        size_hint: None, None
+                        height: "0dp"
+                        width: 640
+                        source: ""

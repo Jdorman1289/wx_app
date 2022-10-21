@@ -52,6 +52,7 @@ class MainWindow(MDWidget):
         img_get.urlretrieve("https://radar.weather.gov/ridge/standard/CONUS_0.gif", "radar.jpg")
 
         self.ids.radar_id.source = "radar.jpg"
+        self.ids.radar_id.height = "480dp"
 
 
 class Wx(MDApp):
