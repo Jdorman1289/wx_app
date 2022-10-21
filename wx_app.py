@@ -8,7 +8,7 @@ import pandas as pd
 import urllib.request as img_get
 
 
-# The different screens 
+
 class MainWindow(MDWidget):
 
     def get_wx(self):
@@ -52,7 +52,7 @@ class MainWindow(MDWidget):
         img_get.urlretrieve("https://radar.weather.gov/ridge/standard/CONUS_0.gif", "radar.jpg")
 
         self.ids.radar_id.source = "radar.jpg"
-        self.ids.radar_id.height = "480dp"
+        self.ids.radar_id.height = self.height
 
 
 class Wx(MDApp):

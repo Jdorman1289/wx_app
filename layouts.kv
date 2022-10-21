@@ -54,31 +54,28 @@ MainWindow:
                     canvas.before:
                         Color:
                             rgb: (.0588, .3216, .7294)
+                            #rgb: (.18, .18, .18)
                         Rectangle:
                             pos: self.pos
                             size: self.size
-
-                    MDBoxLayout:
-                        orientation: "vertical"
-                            
-                        MDTextField
-                            id: location
-                            hint_text: "City name: 'Dallas'"
-
-
-                        MDTextField
-                            id: state
-                            hint_text: "State name: 'Texas'"
-
-
-                        MDFlatButton:
-                            text: "Get Weather"
-                            on_release: root.get_wx()
-
-
-                        MDFlatButton:
-                            text: "Clear"
-                            on_release: root.clear()
+                    
+                    
+                    MDTextField:
+                        id: location
+                        hint_text: "City name:"
+                        
+                    MDRectangleFlatButton:
+                        text: "Get Weather"
+                        on_release: root.get_wx()
+                    
+                    MDTextField:
+                        id: state
+                        hint_text: "State name:"
+                    
+                    MDRectangleFlatButton:
+                        text: "Clear"
+                        on_release: root.clear()
+                        
 
                     MDBoxLayout:
                         orientation: "vertical"
@@ -123,8 +120,8 @@ MainWindow:
                 icon: "radar"
 
 
-                MDBoxLayout:
-                    orientation: "vertical"
+                MDGridLayout:
+                    cols: 1
                     size: root.width, root.height
 
                     canvas.before:
@@ -135,7 +132,7 @@ MainWindow:
                             size: self.size
 
  
-                    MDFlatButton:
+                    MDRectangleFlatButton:
                         text: "Get/Refresh"
                         on_release: root.get_radar()
 
@@ -144,7 +141,7 @@ MainWindow:
                         id: radar_id
                         allow_stretch: True
                         keep_ratio: True
-                        size_hint: None, None
+                        size_hint_y: None
                         height: "0dp"
-                        width: 640
                         source: ""
+                        
