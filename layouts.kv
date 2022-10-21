@@ -34,179 +34,141 @@
 
 
 
-################################### All Windows #####################################
-
-WindowManager:
-    MainWindow:
-    WindowTwo:
 
 #################################### Main Window Layout #############################
-<MainWindow>
-    name: "main_window"
+MainWindow:
 
-    GridLayout:
-        cols: 1
+    MDScreen:
         size: root.width, root.height
 
-        canvas:
-            Color:
-                rgb: (.14, .14, .14)
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        MDBottomNavigation:
 
-        FloatLayout
+            MDBottomNavigationItem:
+                name: "screen 1"
+                text: "Current"
+                icon: "home-thermometer-outline"
 
-            Button:
-                text: "See Radar"
-                pos_hint: {"top": 1, "left": 1}
-                size_hint_y: None
-				size_hint_x: None
-                text_size: None, None
-                height: self.texture_size[1]
-				width: 100
-                on_release: 
-                    app.root.current = "window_two" 
-                    root.manager.transition.direction = "up"
-        	
-        	Spinner:
-        		id: drop_menu
-				pos_hint: {"top": 1, "right": 1}
-        		text: "..."
-        		values: ["About", "License"]
-				size_hint_y: None
-				size_hint_x: None
-                text_size: None, None
-                height: self.texture_size[1]
-				width: 80
-        		on_text: root.popup_menu(drop_menu.text)
 
-            Image:
-                source: "weather.png"
-                allow_stretch: True
-                keep_ratio: True
-                pos_hint: {"right": 1, "top": 1}
-            
-            TextInput:
-                id: location
-                multiline: False
-                size_hint_x: None
-                width: 100
-                size_hint_y: None
-                height: 45
-                text: "City"
-                pos_hint: {"top": .8, "left": 1}
 
-            TextInput:
-            	id: state
-            	multiline: False
-                size_hint_x: None
-                width: 100
-                size_hint_y: None
-                height: 45
-                text: "State"
-                pos_hint: {"top": .6, "left": 1}
-
-            Button:
-            	text: "Get Weather"
-            	bold: True
-            	background_color: "#00FFCE"
-                size_hint_x: None
-                width: 100
-                size_hint_y: None
-                height: 45
-            	on_release: root.get_wx()
-                pos_hint: {"top": .4, "left": 1}
-
-            Button:
-            	text: "Clear"
-            	bold: True
-            	background_color: "#00FFCE"
-                size_hint_x: None
-                width: 100
-                size_hint_y: None
-                height: 45
-            	on_release: root.clear()
-                pos_hint: {"top": .2, "left": 1}
-
-        Accordion:
-            orientation: 'vertical'
-            size_hint_y: None
-            height: 400
-
-            AccordionItem:
-                title: "Current Conditions and Forecast" 
 
                 GridLayout:
-                    cols: 2
+                    cols: 1
+                    size: root.width, root.height
 
-                    Splitter:
-                        sizable_from: 'right'
+                    canvas.before:
+                        Color:
+                            rgb: (.537, .812, .941)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    FloatLayout
+
+                        
+
+
+                        
+                        MDTextField
+                            id: location
+                            hint_text: "City name: 'Dallas'"
+                            pos_hint: {"top": .8, "left": 1}
+                            height: 45
+                            width: 100
+
+                        MDTextField
+                            id: state
+                            hint_text: "State name: 'Texas'"
+                            pos_hint: {"top": .8, "left": 1}
+                            height: 45
+                            width: 100
+
+                        MDRaisedButton:
+                            text: "Get Weather"
+                            on_release: root.get_wx()
+                            pos_hint: {"top": .4, "left": 1}
+
+                        MDRaisedButton:
+                            text: "Clear"
+                            on_release: root.clear()
+                            pos_hint: {"top": .2, "left": 1}
+
+
                         
                         ScrollView:
-                            Label:
+                            MDLabel:
                                 id: observation
                                 size_hint_y: None
                                 text_size: self.width, None
                                 height: self.texture_size[1]
-                                color: "#00FFCE"
+                                md_color: app.theme_cls.primary_color
 
+
+                                ScrollView:
+                                    Label:
+                                        id: forecast
+                                        size_hint_y: None
+                                        text_size: self.width, None
+                                        height: self.texture_size[1]
+                                        color: "#00FFCE"   
+
+
+            MDBottomNavigationItem:
+                name: "screen 2"
+                text: "Forecast"
+                icon: "calendar-arrow-right"
+
+
+                GridLayout:
+                    cols: 1
+                    size: root.width, root.height
+
+                    canvas.before:
+                        Color:
+                            rgb: (.537, .812, .941)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    
+                    
                     ScrollView:
                         Label:
                             id: forecast
                             size_hint_y: None
                             text_size: self.width, None
                             height: self.texture_size[1]
-                            color: "#00FFCE"   
+                            md_color: app.theme_cls.primary_color
 
 
-################################ Window Two Layout #################################
-<WindowTwo>
-    name: "window_two"
+            MDBottomNavigationItem:
+                name: "screen 3"
+                text: "Radar"
+                icon: "radar"
 
 
-    GridLayout:
-        cols: 1
-        size: root.width, root.height
+                GridLayout:
+                    cols: 1
+                    size: root.width, root.height
 
-        canvas:
-            Color:
-                rgb: (.14, .14, .14)
-            Rectangle:
-                pos: self.pos
-                size: self.size
+                    canvas.before:
+                        Color:
+                            rgb: (.537, .812, .941)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
 
 
-        FloatLayout
+                    FloatLayout
+                        
+                        MDRaisedButton:
+                            text: "Get/Refresh"
+                            pos_hint: {"top": 1, "right": 1}
+                            on_release: root.get_radar()
 
-            Button:
-                text: "Go Back"
-                pos_hint: {"top": 1, "left": 1}
-                size_hint_y: None
-				size_hint_x: None
-                text_size: None, None
-                height: self.texture_size[1]
-				width: 100
-                on_release: 
-                    app.root.current = "main_window" 
-                    root.manager.transition.direction = "down"
-
-            
-            Button:
-                text: "Get/Refresh"
-                pos_hint: {"top": 1, "right": 1}
-                background_color: "#00FFCE"
-                size_hint_y: None
-				size_hint_x: None
-                text_size: None, None
-                height: self.texture_size[1]
-				width: 100
-                on_release: root.get_radar()
-
-            
-            Image:
-                id: radar_id
-                pos_hint: {"top": .95, "left": .5}
-                source: " "
-                allow_stretch: True
-                keep_ratio: True
+                        
+                        Image:
+                            id: radar_id
+                            pos_hint: {"top": .95, "left": .5}
+                            allow_stretch: True
+                            keep_ratio: True
+                            height: "0dp"
+                            source: ""

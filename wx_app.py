@@ -1,7 +1,6 @@
-from kivy.app import App
+from kivymd.app import MDApp
+from kivymd.uix.widget import MDWidget
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.factory import Factory
 import requests
 from bs4 import BeautifulSoup as bs
 import re
@@ -9,8 +8,8 @@ import pandas as pd
 import urllib.request as img_get
 
 
-# The different screens
-class MainWindow(Screen):
+# The different screens 
+class MainWindow(MDWidget):
 
     def get_wx(self):
         # grabs database of locations
@@ -47,17 +46,6 @@ class MainWindow(Screen):
         self.ids.observation.text = " "
         self.ids.forecast.text = " "
     
-    def popup_menu(self, value):
-        if value == "License":
-            Factory.license_page().open()
-            self.ids.drop_menu.text = "..."
-        elif value == "About":
-            Factory.about_page().open()
-            self.ids.drop_menu.text = "..."
-    
-    
-
-class WindowTwo(Screen):
     
     def get_radar(self):
 
@@ -65,16 +53,12 @@ class WindowTwo(Screen):
 
         self.ids.radar_id.source = "radar.jpg"
 
-class WindowManager(ScreenManager):
-    pass
 
-kv = Builder.load_file('layouts.kv')
-
-
-
-class Wx(App):
+class Wx(MDApp):
     def build(self):
-        return kv
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Green"
+        return Builder.load_file('layouts.kv')
 
 
 # on launch start main window class
