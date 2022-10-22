@@ -1,40 +1,3 @@
-################################### All Popup Pages #####################################
-
-<license_page@Popup>
-    auto_dismiss: True
-    title: "Acknowledgements / License"
-    size_hint: 0.6, 0.6
-    pos_hint: {"x": 0.2, "top": 0.9}
-
-    ScrollView:
-        Label:
-            text: "A simple weather app.\n\n\nThanks to simplemaps.com/data/us-cities for providing the database of locations.\n\nThanks to icons8.com for providing the icon image used on the app.\n\nThanks to weather.gov for creating weather forecasts.\n\n\nLicensed under the: GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 "
-
-            size_hint_y: None
-            text_size: self.width, None
-            height: self.texture_size[1]
-            color: "#00FFCE"   
-
-
-<about_page@Popup>
-    auto_dismiss: True
-    title: "About"
-    size_hint: 0.6, 0.6
-    pos_hint: {"x": 0.2, "top": 0.9}
-
-    ScrollView:
-        Label:
-            text: "Created by Jesse Dorman.\n\n\nFor updates you can go here: https://github.com/Jdorman1289/wx_app/releases \n\nTo donate to the developer you can go here: https://ko-fi.com/jessecreates \n\n\nEnjoy!"
-
-            size_hint_y: None
-            text_size: self.width, None
-            height: self.texture_size[1]
-            color: "#00FFCE"   
-
-
-
-
-
 #################################### Main Window Layout #############################
 MainWindow:
 
@@ -54,7 +17,6 @@ MainWindow:
                     canvas.before:
                         Color:
                             rgb: (.0588, .3216, .7294)
-                            #rgb: (.18, .18, .18)
                         Rectangle:
                             pos: self.pos
                             size: self.size
@@ -145,3 +107,54 @@ MainWindow:
                         height: "0dp"
                         source: ""
                         
+            MDBottomNavigationItem:
+                name: "screen 4"
+                text: "About"
+                icon: "information-outline"
+
+                MDGridLayout:
+                    cols: 1
+                    
+                    canvas.before:
+                        Color:
+                            rgb: (.0588, .3216, .7294)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    
+                    
+                    MDList:
+                        ThreeLineListItem:
+                            text: "A Simple Weather App"
+                            secondary_text: "thanks to simplemaps.com/data/us-cities for providing the database of locations"
+                            tertiary_text: "thanks to icons8.com for providing the icon image"
+    
+
+                    MDScrollView:
+                        
+                        MDList:
+                            
+                            OneLineIconListItem:
+                                
+                                text: "Updates"
+            
+                                IconLeftWidget:
+                                    icon: "update"
+                                    on_release: root.update()
+                                    
+                            OneLineIconListItem:
+                                text: "Say thanks"
+                            
+                                IconLeftWidget:
+                                    icon: "cards-heart"
+                                    on_release: root.donate()
+                                    
+                            
+                            OneLineIconListItem:
+                                text: "Close app"
+                        
+                                IconLeftWidget:
+                                    icon: "logout"
+                        
+                                    on_release: 
+                                        root.close_two()

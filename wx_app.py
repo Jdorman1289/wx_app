@@ -1,13 +1,15 @@
 from kivymd.app import MDApp
 from kivymd.uix.widget import MDWidget
 from kivy.lang import Builder
+from kivy.core.window import Window
+import webbrowser
 import requests
 from bs4 import BeautifulSoup as bs
 import re
 import pandas as pd
 import urllib.request as img_get
 
-
+Window.size = 640, 640
 
 class MainWindow(MDWidget):
 
@@ -53,6 +55,12 @@ class MainWindow(MDWidget):
 
         self.ids.radar_id.source = "radar.jpg"
         self.ids.radar_id.height = self.height
+
+    def update(self):
+        webbrowser.open_new_tab("https://github.com/Jdorman1289/wx_app/releases")
+
+    def donate(self):
+        webbrowser.open_new_tab("https://ko-fi.com/jessecreates")
 
 
 class Wx(MDApp):
