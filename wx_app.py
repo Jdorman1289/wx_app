@@ -63,6 +63,8 @@ class MainWindow(MDWidget):
     def donate(self):
         webbrowser.open_new_tab("https://ko-fi.com/jessecreates")
 
+    def close_two(self):
+        exit()
 
 class Wx(MDApp):
     def build(self):
