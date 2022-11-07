@@ -15,6 +15,7 @@ class MainWindow(MDWidget):
 
     def get_wx(self):
 
+
         # grabs database of locations
         
         cities = pd.read_csv("uscities.csv")
@@ -48,7 +49,7 @@ class MainWindow(MDWidget):
                 for icon in wx_icons:
                     if weather == icon:
                         self.ids.ob_icon_image.source = wx_icons[icon]
-                        self.ids.ob_icon_image.height = "64dp"
+                        self.ids.ob_icon_image.height = "128dp"
 
   
             self.ids.observation.text = f"{obs[0].text}{obs[1].text}"
@@ -56,14 +57,26 @@ class MainWindow(MDWidget):
             # for forecast icon pics
 
             self.ids.forecast.text = f"Forecast for {location} {state} \n\n{time_label[0].text}: {wx[0].text} \n\n{time_label[1].text}: {wx[1].text} \n\n{time_label[2].text}: {wx[2].text} \n\n{time_label[3].text}: {wx[3].text} \n\n{time_label[4].text}: {wx[4].text}\n\n{time_label[5].text}: {wx[5].text}\n\n"
+        else:
+
+            self.ids.observation.text = "No data found! Please make sure the location is entered in this format:\n\n'Dallas' 'Texas'"
+            self.ids.ob_icon_image.source = "no_data.png"
+            self.ids.ob_icon_image.height = "128dp"
+            self.ids.forecast.text = ""
+
 
     def clear(self):
+        # resets wx data
         self.ids.location.text = ""
         self.ids.state.text = ""
         self.ids.observation.text = " "
         self.ids.forecast.text = " "
+        self.ids.radar_id.height = "0dp"
+
+        # resets icons
         self.ids.ob_icon_image.height = "0dp"
         self.ids.ob_icon_image.source = ""
+
     
     
     def get_radar(self):
