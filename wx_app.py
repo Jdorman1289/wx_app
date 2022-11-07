@@ -40,6 +40,14 @@ class MainWindow(MDWidget):
 
             obs = site_soup.find_all("div", re.compile("pull-left"))
 
+            wx_icons = {"Cloudy": "path-to-cloudy-pic"}
+
+            obs_icon_check = f"{obs[0].text}".split()
+            for weather in obs_icon_check:
+                for icon in wx_icons:
+                    if weather == icon:
+                        print(wx_icons[icon])
+            
             self.ids.observation.text = f"Current Conditions for {location} {state} {obs[0].text}{obs[1].text}"
             self.ids.forecast.text = f"Forecast for {location} {state} \n\n{time_label[0].text}: {wx[0].text} \n\n{time_label[1].text}: {wx[1].text} \n\n{time_label[2].text}: {wx[2].text} \n\n{time_label[3].text}: {wx[3].text} \n\n{time_label[4].text}: {wx[4].text}\n\n{time_label[5].text}: {wx[5].text}\n\n"
 
