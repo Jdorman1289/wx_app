@@ -41,8 +41,18 @@ MainWindow:
 
                     MDBoxLayout:
                         orientation: "vertical"
+
+                        Image:
+                            id: ob_icon_image
+                            allow_stretch: True
+                            keep_ratio: True
+                            size_hint: None, None
+                            width: 64
+                            height: '0dp'
+                            source: ""                 
                         
                         ScrollView:
+
                             MDLabel:
                                 id: observation
                                 size_hint_y: None
