@@ -55,20 +55,13 @@ class MainWindow(MDWidget):
             self.ids.observation.text = f"{obs[0].text}{obs[1].text}"
 
 
-            forecast_icon_check_0 = f"{wx[0].text}".split()
-            for weather_forecast in forecast_icon_check_0:
-                for ico in wx_icons:
-                    if f"{weather_forecast}".upper == f"{forecast_icon_check_0}".upper:
-                        self.ids.forecast_label_0.text = f"{time_label[0].text}"
-                        self.ids.forecast_0.text = f"{wx[0].text}"
-                        self.ids.forecast_icon_0.source = wx_icons[ico]
-                        self.ids.forecast_icon_0.height = "128dp"
-
-
-            print(f"{weather_forecast}".upper)
 
             # forecast
 
+            self.ids.forecast_label_0.text = f"{time_label[0].text}"
+            self.ids.forecast_0.text = f"{wx[0].text}"
+            self.ids.forecast_icon_0.source = "cloudy.png"
+            self.ids.forecast_icon_0.height = "128dp"
 
             self.ids.forecast_label_1.text = f"{time_label[1].text}"
             self.ids.forecast_1.text = f"{wx[1].text}"
