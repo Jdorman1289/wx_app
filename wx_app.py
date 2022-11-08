@@ -20,8 +20,8 @@ class MainWindow(MDWidget):
         
         cities = pd.read_csv("uscities.csv")
 
-        location = self.ids.location.text
-        state = self.ids.state.text
+        location = self.ids.location.text.capitalize()
+        state = self.ids.state.text.capitalize()
 
         # converts city name to lat/lon for url variables
         city_coordinates = cities[["lat", "lng", "state_name"]].where(cities["city"] == location)
@@ -79,7 +79,7 @@ class MainWindow(MDWidget):
             self.ids.observation.text = "No data found! Please make sure the location is entered in this format:\n\n'Dallas' 'Texas'"
             self.ids.ob_icon_image.source = "no_data.png"
             self.ids.ob_icon_image.height = "128dp"
-            self.ids.forecast.text = ""
+
 
 
     def clear(self):
