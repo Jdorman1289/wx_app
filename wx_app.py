@@ -41,7 +41,7 @@ class MainWindow(MDWidget):
 
             obs = site_soup.find_all("div", re.compile("pull-left"))
 
-            wx_icons = {"Cloudy": "cloudy.png", "Overcast": "cloudy.png", "Rain": "rainy.png", "Drizzle": "rainy.png","Fair": "sunny.png", "Sunny": "sunny.png","Clear": "sunny.png", "Thunderstorms": "stormy.png", "Wind": "windy.png", "Breezy": "windy.png", "Snow": "snowy.png"}
+            wx_icons = {"Cloudy": "cloudy.png", "Overcast": "cloudy.png", "Clouds": "cloudy.png", "Rain": "rainy.png", "Drizzle": "rainy.png","Fair": "sunny.png", "Sunny": "sunny.png","Clear": "sunny.png", "Thunderstorms": "stormy.png", "Wind": "windy.png", "Breezy": "windy.png", "Snow": "snowy.png"}
 
             # for obs icon pic
             obs_icon_check = f"{obs[0].text}".split()
