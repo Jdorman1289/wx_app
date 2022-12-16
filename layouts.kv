@@ -41,8 +41,18 @@ MainWindow:
 
                     MDBoxLayout:
                         orientation: "vertical"
+
+                        Image:
+                            id: ob_icon_image
+                            allow_stretch: True
+                            keep_ratio: True
+                            size_hint: None, None
+                            width: 128
+                            height: '0dp'
+                            source: ""                 
                         
                         ScrollView:
+
                             MDLabel:
                                 id: observation
                                 size_hint_y: None
@@ -56,7 +66,7 @@ MainWindow:
                 icon: "calendar-arrow-right"
 
 
-                GridLayout:
+                MDGridLayout:
                     cols: 1
                     size: root.width, root.height
 
@@ -66,16 +76,14 @@ MainWindow:
                         Rectangle:
                             pos: self.pos
                             size: self.size
-                    
-                    
-                    ScrollView:
-                        MDLabel:
-                            id: forecast
-                            size_hint_y: None
-                            text_size: self.width, None
-                            height: self.texture_size[1]
 
-
+                        
+                    MDLabel:
+                        id: forecast
+                        text: ""
+                        bold: True
+                        
+                        
             MDBottomNavigationItem:
                 name: "screen 3"
                 text: "Radar"
