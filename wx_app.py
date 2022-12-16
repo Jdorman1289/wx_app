@@ -54,25 +54,8 @@ class MainWindow(MDWidget):
             # current wx
             self.ids.observation.text = f"{obs[0].text}{obs[1].text}"
 
-
-
             # forecast
-
-            self.ids.forecast_label_0.text = f"{time_label[0].text}"
-            self.ids.forecast_0.text = f"{wx[0].text}"
-            self.ids.forecast_icon_0.source = "cloudy.png"
-            self.ids.forecast_icon_0.height = "128dp"
-
-            self.ids.forecast_label_1.text = f"{time_label[1].text}"
-            self.ids.forecast_1.text = f"{wx[1].text}"
-            self.ids.forecast_icon_1.source = "rainy.png"
-            self.ids.forecast_icon_1.height = "128dp"
-
-            self.ids.forecast_label_2.text = f"{time_label[2].text}"
-            self.ids.forecast_2.text = f"{wx[2].text}"
-            self.ids.forecast_icon_2.source = "snowy.png"
-            self.ids.forecast_icon_2.height = "128dp"
-
+            self.ids.forecast.text = f"Forecast for {location} {state} \n\n{time_label[0].text}: {wx[0].text} \n\n{time_label[1].text}: {wx[1].text} \n\n{time_label[2].text}: {wx[2].text} \n\n{time_label[3].text}: {wx[3].text} \n\n{time_label[4].text}: {wx[4].text}\n\n{time_label[5].text}: {wx[5].text}\n\n"
 
         else:
 
@@ -80,20 +63,12 @@ class MainWindow(MDWidget):
             self.ids.ob_icon_image.source = "no_data.png"
             self.ids.ob_icon_image.height = "128dp"
 
-
-
     def clear(self):
-        # resets wx data
         self.ids.location.text = ""
         self.ids.state.text = ""
         self.ids.observation.text = " "
-
-        self.ids.radar_id.height = "0dp"
-
-        # resets icons
+        self.ids.forecast.text = " "
         self.ids.ob_icon_image.height = "0dp"
-        self.ids.ob_icon_image.source = ""
-
     
     
     def get_radar(self):
@@ -115,10 +90,14 @@ class MainWindow(MDWidget):
 class Wx(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
-        self.theme_cls.primary_palette = "LightBlue"
+        self.theme_cls.primary_palette = "Green"
         return Builder.load_file('layouts.kv')
 
 
 # on launch start main window class
 if __name__ == "__main__":
     Wx().run()
+
+
+
+
