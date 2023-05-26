@@ -11,10 +11,10 @@ import urllib.request as img_get
 
 Window.size = 640, 640
 
+
 class MainWindow(MDWidget):
 
     def get_wx(self):
-
 
         # grabs database of locations
 
@@ -36,7 +36,6 @@ class MainWindow(MDWidget):
             self.ids.ob_icon_image.source = "no_data.png"
             self.ids.ob_icon_image.height = "128dp"
 
-
     def get_wx_data(self, check, location, state):
         lat = check[1]
         lon = check[2].strip("]")
@@ -50,7 +49,9 @@ class MainWindow(MDWidget):
 
         obs = site_soup.find_all("div", re.compile("pull-left"))
 
-        wx_icons = {"Cloudy": "cloudy.png", "Overcast": "cloudy.png", "Clouds": "cloudy.png", "Rain": "rainy.png", "Drizzle": "rainy.png","Fair": "sunny.png", "Sunny": "sunny.png","Clear": "sunny.png", "Thunderstorms": "stormy.png", "Wind": "windy.png", "Breezy": "windy.png", "Snow": "snowy.png"}
+        wx_icons = {"Cloudy": "cloudy.png", "Overcast": "cloudy.png", "Clouds": "cloudy.png", "Rain": "rainy.png",
+                    "Drizzle": "rainy.png", "Fair": "sunny.png", "Sunny": "sunny.png", "Clear": "sunny.png",
+                    "Thunderstorms": "stormy.png", "Wind": "windy.png", "Breezy": "windy.png", "Snow": "snowy.png"}
 
         # for obs icon pic
         obs_icon_check = f"{obs[0].text}".split()
@@ -72,8 +73,7 @@ class MainWindow(MDWidget):
         self.ids.observation.text = " "
         self.ids.forecast.text = " "
         self.ids.ob_icon_image.height = "0dp"
-    
-    
+
     def get_radar(self):
 
         img_get.urlretrieve("https://radar.weather.gov/ridge/standard/CONUS_0.gif", "radar.jpg")
@@ -90,6 +90,7 @@ class MainWindow(MDWidget):
     def close_two(self):
         exit()
 
+
 class Wx(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
@@ -100,7 +101,3 @@ class Wx(MDApp):
 # on launch start main window class
 if __name__ == "__main__":
     Wx().run()
-
-
-
-
